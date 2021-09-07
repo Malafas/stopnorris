@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1 (Python 3.9.7 on win32)" generated="20210907 07:28:23.013" rpa="false" schemaversion="2">
+<suite id="s1" name="Tests" source="C:\Users\Malafas\PycharmProjects\stopnorris\Tests">
+<suite id="s1-s1" name="BE" source="C:\Users\Malafas\PycharmProjects\stopnorris\Tests\BE">
+<suite id="s1-s1-s1" name="Chucknorris" source="C:\Users\Malafas\PycharmProjects\stopnorris\Tests\BE\chucknorris.robot">
+<test id="s1-s1-s1-t1" name="BE-01 Jokes Categories">
+<kw name="Get JSON" library="keywords">
+<arg>${endpoint_categories}</arg>
+<doc>Gets a JSON payload.</doc>
+<kw name="GET" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${endpoint}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a GET request.</doc>
+<msg timestamp="20210907 07:28:23.897" level="INFO">GET Request : url=https://api.chucknorris.io/jokes/categories 
+ path_url=/jokes/categories 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20210907 07:28:23.897" level="INFO">GET Response : url=https://api.chucknorris.io/jokes/categories 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 07 Sep 2021 06:28:23 GMT', 'Content-Type': 'application/json;charset=UTF-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=vI2XV46eJtwxSEERoRJtT9bU3whJIif8GWycHtSaFA7BuycRum7lj6%2FD43goi6sp2IErPICWwKVa190R7pGP2hUZ57NR7C5CqbRlFhQw6k9T7US86EjRRk65RuvKwgzInAYNAp8%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '68ade06c6cadff14-MAD', 'Content-Encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443"; ma=86400, h3-27=":443"; ma=86400'} 
+ body=["animal","career","celebrity","dev","explicit","fashion","food","history","money","movie","music","political","religion","science","sport","travel"] 
+ </msg>
+<msg timestamp="20210907 07:28:23.898" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20210907 07:28:23.264" endtime="20210907 07:28:23.898"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${response_json}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20210907 07:28:23.901" level="INFO">${response_json} = ['animal', 'career', 'celebrity', 'dev', 'explicit', 'fashion', 'food', 'history', 'money', 'movie', 'music', 'political', 'religion', 'science', 'sport', 'travel']</msg>
+<status status="PASS" starttime="20210907 07:28:23.899" endtime="20210907 07:28:23.901"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response_json}</arg>
+<arg>repr=True</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20210907 07:28:23.903" level="INFO">['animal',
+ 'career',
+ 'celebrity',
+ 'dev',
+ 'explicit',
+ 'fashion',
+ 'food',
+ 'history',
+ 'money',
+ 'movie',
+ 'music',
+ 'political',
+ 'religion',
+ 'science',
+ 'sport',
+ 'travel']</msg>
+<status status="PASS" starttime="20210907 07:28:23.902" endtime="20210907 07:28:23.903"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${response_json}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20210907 07:28:23.904" level="INFO">${response_json} = ['animal', 'career', 'celebrity', 'dev', 'explicit', 'fashion', 'food', 'history', 'money', 'movie', 'music', 'political', 'religion', 'science', 'sport', 'travel']</msg>
+<status status="PASS" starttime="20210907 07:28:23.903" endtime="20210907 07:28:23.904"/>
+</kw>
+<status status="PASS" starttime="20210907 07:28:23.263" endtime="20210907 07:28:23.905"/>
+</kw>
+<kw name="Validate Schema" library="utils">
+<arg>${schema_categories}</arg>
+<arg>${response_json}</arg>
+<doc>Validates JSON schema</doc>
+<msg timestamp="20210907 07:28:23.908" level="INFO">Payload: ['animal', 'career', 'celebrity', 'dev', 'explicit', 'fashion', 'food', 'history', 'money', 'movie', 'music', 'political', 'religion', 'science', 'sport', 'travel']
+Expected Schema: {'type': 'array'}</msg>
+<status status="PASS" starttime="20210907 07:28:23.906" endtime="20210907 07:28:23.908"/>
+</kw>
+<kw name="Lists Should Be Equal" library="Collections">
+<arg>${response_json}</arg>
+<arg>${payload_categories_validation}</arg>
+<doc>Fails if given lists are unequal.</doc>
+<status status="PASS" starttime="20210907 07:28:23.910" endtime="20210907 07:28:23.912"/>
+</kw>
+<doc>Verify the categories list values.</doc>
+<tag>BE</tag>
+<status status="PASS" starttime="20210907 07:28:23.263" endtime="20210907 07:28:23.923"/>
+</test>
+<test id="s1-s1-s1-t2" name="BE-02 Random Joke">
+<kw name="Get JSON" library="keywords">
+<arg>${endpoint_random}</arg>
+<doc>Gets a JSON payload.</doc>
+<kw name="GET" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${endpoint}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a GET request.</doc>
+<msg timestamp="20210907 07:28:24.187" level="INFO">GET Request : url=https://api.chucknorris.io/jokes/random 
+ path_url=/jokes/random 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20210907 07:28:24.187" level="INFO">GET Response : url=https://api.chucknorris.io/jokes/random 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 07 Sep 2021 06:28:23 GMT', 'Content-Type': 'application/json;charset=UTF-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=9CKuXe%2FZR7vXMY%2F%2FgTX7Ap5uOz6vWJx0ydaa%2FmaGU%2FcO4i6VSpZZSWAmYqpd37nUUG6lE%2F73EZM06BYe8ZFAr81LbM%2BwCjHy5znuTbDKLgV8SRVnr7U8jWCUf3nDu1kt7KTY4kI%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '68ade070698e14fd-MAD', 'Content-Encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400, h3-28=":443"; ma=86400, h3-27=":443"; ma=86400'} 
+ body={"categories":[],"created_at":"2020-01-05 13:42:22.980058","icon_url":"https://assets.chucknorris.host/img/avatar/chuck-norris.png","id":"BghoGBrZScy9eNPkgbxp_A","updated_at":"2020-01-05 13:42:22.980058","url":"https://api.chucknorris.io/jokes/BghoGBrZScy9eNPkgbxp_A","value":"Chuck Norris can pleasure a woman by simply pointing his fingers and saying \"Booyah\"."} 
+ </msg>
+<msg timestamp="20210907 07:28:24.187" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20210907 07:28:23.928" endtime="20210907 07:28:24.187"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${response_json}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20210907 07:28:24.188" level="INFO">${response_json} = {'categories': [], 'created_at': '2020-01-05 13:42:22.980058', 'icon_url': 'https://assets.chucknorris.host/img/avatar/chuck-norris.png', 'id': 'BghoGBrZScy9eNPkgbxp_A', 'updated_at': '2020-01-05 13:4...</msg>
+<status status="PASS" starttime="20210907 07:28:24.187" endtime="20210907 07:28:24.188"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response_json}</arg>
+<arg>repr=True</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20210907 07:28:24.189" level="INFO">{'categories': [],
+ 'created_at': '2020-01-05 13:42:22.980058',
+ 'icon_url': 'https://assets.chucknorris.host/img/avatar/chuck-norris.png',
+ 'id': 'BghoGBrZScy9eNPkgbxp_A',
+ 'updated_at': '2020-01-05 13:42:22.980058',
+ 'url': 'https://api.chucknorris.io/jokes/BghoGBrZScy9eNPkgbxp_A',
+ 'value': 'Chuck Norris can pleasure a woman by simply pointing his fingers and saying "Booyah".'}</msg>
+<status status="PASS" starttime="20210907 07:28:24.188" endtime="20210907 07:28:24.189"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${response_json}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20210907 07:28:24.189" level="INFO">${response_json} = {'categories': [], 'created_at': '2020-01-05 13:42:22.980058', 'icon_url': 'https://assets.chucknorris.host/img/avatar/chuck-norris.png', 'id': 'BghoGBrZScy9eNPkgbxp_A', 'updated_at': '2020-01-05 13:4...</msg>
+<status status="PASS" starttime="20210907 07:28:24.189" endtime="20210907 07:28:24.189"/>
+</kw>
+<status status="PASS" starttime="20210907 07:28:23.927" endtime="20210907 07:28:24.189"/>
+</kw>
+<kw name="Validate Schema" library="utils">
+<arg>${schema_random}</arg>
+<arg>${response_json}</arg>
+<doc>Validates JSON schema</doc>
+<msg timestamp="20210907 07:28:24.191" level="INFO">Payload: {'categories': [], 'created_at': '2020-01-05 13:42:22.980058', 'icon_url': 'https://assets.chucknorris.host/img/avatar/chuck-norris.png', 'id': 'BghoGBrZScy9eNPkgbxp_A', 'updated_at': '2020-01-05 13:42:22.980058', 'url': 'https://api.chucknorris.io/jokes/BghoGBrZScy9eNPkgbxp_A', 'value': 'Chuck Norris can pleasure a woman by simply pointing his fingers and saying "Booyah".'}
+Expected Schema: {'type': 'object', 'properties': {'categories': {'type': 'array'}, 'created_at': {'type': 'string'}, 'icon_url': {'type': 'string'}, 'id': {'type': 'string'}, 'updated_at': {'type': 'string'}, 'url': {'type': 'string'}, 'value': {'type': 'string'}}}</msg>
+<status status="PASS" starttime="20210907 07:28:24.190" endtime="20210907 07:28:24.191"/>
+</kw>
+<kw name="Validate Random Payload" library="utils">
+<arg>${response_json}</arg>
+<arg>${expected_values_random}</arg>
+<arg>${payload_categories_validation}</arg>
+<doc>Validates random joke payload values</doc>
+<msg timestamp="20210907 07:28:24.194" level="INFO">The converted dictionary : {'categories': [], 'created_at': '2020-01-05 13:42:22.980058', 'icon_url': 'https://assets.chucknorris.host/img/avatar/chuck-norris.png', 'id': 'BghoGBrZScy9eNPkgbxp_A', 'updated_at': '2020-01-05 13:42:22.980058', 'url': 'https://api.chucknorris.io/jokes/BghoGBrZScy9eNPkgbxp_A', 'value': 'Chuck Norris can pleasure a woman by simply pointing his fingers and saying "Booyah".'}
+Value for categories is correct.
+[]
+Value for created_at is correct.
+2020-01-05 13:42:22.980058
+Value for icon_url is correct.
+https://assets.chucknorris.host/img/avatar/chuck-norris.png
+Value for id is correct.
+BghoGBrZScy9eNPkgbxp_A
+Value for updated_at is correct.
+2020-01-05 13:42:22.980058
+Value for url is correct.
+https://api.chucknorris.io/jokes/BghoGBrZScy9eNPkgbxp_A
+PASS : Payload is correct</msg>
+<status status="PASS" starttime="20210907 07:28:24.191" endtime="20210907 07:28:24.195"/>
+</kw>
+<doc>Verify a retrieved random joke.</doc>
+<tag>BE</tag>
+<status status="PASS" starttime="20210907 07:28:23.925" endtime="20210907 07:28:24.195"/>
+</test>
+<doc>Chuck Norris API test suite using RobotFramework Requests.</doc>
+<status status="PASS" starttime="20210907 07:28:23.040" endtime="20210907 07:28:24.196"/>
+</suite>
+<status status="PASS" starttime="20210907 07:28:23.038" endtime="20210907 07:28:24.201"/>
+</suite>
+<suite id="s1-s2" name="FE" source="C:\Users\Malafas\PycharmProjects\stopnorris\Tests\FE">
+<suite id="s1-s2-s1" name="Stopwatch" source="C:\Users\Malafas\PycharmProjects\stopnorris\Tests\FE\stopwatch.robot">
+<kw name="Open Page and Navigate to Stopwatch" library="keywords" type="SETUP">
+<doc>Navigates to Stopwatch's website in the given browser.</doc>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${url}</arg>
+<arg>${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20210907 07:28:24.421" level="INFO">Opening browser 'chrome' to base url 'https://vclock.com/'.</msg>
+<status status="PASS" starttime="20210907 07:28:24.421" endtime="20210907 07:28:29.781"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20210907 07:28:29.781" endtime="20210907 07:28:29.891"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${stopwatch_menu_button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210907 07:28:29.892" level="INFO">Clicking element '//i[@class='icon ci-stopwatch']'.</msg>
+<status status="PASS" starttime="20210907 07:28:29.892" endtime="20210907 07:28:31.135"/>
+</kw>
+<status status="PASS" starttime="20210907 07:28:24.420" endtime="20210907 07:28:31.136"/>
+</kw>
+<test id="s1-s2-s1-t1" name="FE-01 Initial Values">
+<kw name="Validate Initial Values" library="keywords">
+<doc>Validates initial values for the stopwatch time and buttons values.</doc>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20210907 07:28:31.309" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20210907 07:28:31.137" endtime="20210907 07:28:31.310"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${start_button}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20210907 07:28:31.310" endtime="20210907 07:28:31.330"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>${start_button}</arg>
+<arg>${start_button_text}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20210907 07:28:31.330" level="INFO">Verifying element 'id=btn-resume' contains exact text 'Start'.</msg>
+<status status="PASS" starttime="20210907 07:28:31.330" endtime="20210907 07:28:31.345"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>${reset_button}</arg>
+<arg>${reset_button_text}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20210907 07:28:31.346" level="INFO">Verifying element 'id=btn-reset' contains exact text 'Reset'.</msg>
+<status status="PASS" starttime="20210907 07:28:31.345" endtime="20210907 07:28:31.375"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${initial_value}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20210907 07:28:31.387" level="INFO">Current page contains text '00:00.00'.</msg>
+<status status="PASS" starttime="20210907 07:28:31.376" endtime="20210907 07:28:31.387"/>
+</kw>
+<status status="PASS" starttime="20210907 07:28:31.137" endtime="20210907 07:28:31.387"/>
+</kw>
+<doc>Verify that the initial values are displayed when the stopwatch option is first started.</doc>
+<tag>FE</tag>
+<status status="PASS" starttime="20210907 07:28:31.136" endtime="20210907 07:28:31.387"/>
+</test>
+<test id="s1-s2-s1-t2" name="FE-03 Reset Clock">
+<kw name="Validate Initial Values" library="keywords">
+<doc>Validates initial values for the stopwatch time and buttons values.</doc>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20210907 07:28:31.535" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20210907 07:28:31.389" endtime="20210907 07:28:31.536"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${start_button}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20210907 07:28:31.536" endtime="20210907 07:28:31.552"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>${start_button}</arg>
+<arg>${start_button_text}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20210907 07:28:31.552" level="INFO">Verifying element 'id=btn-resume' contains exact text 'Start'.</msg>
+<status status="PASS" starttime="20210907 07:28:31.552" endtime="20210907 07:28:31.561"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>${reset_button}</arg>
+<arg>${reset_button_text}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20210907 07:28:31.562" level="INFO">Verifying element 'id=btn-reset' contains exact text 'Reset'.</msg>
+<status status="PASS" starttime="20210907 07:28:31.561" endtime="20210907 07:28:31.570"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${initial_value}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20210907 07:28:31.576" level="INFO">Current page contains text '00:00.00'.</msg>
+<status status="PASS" starttime="20210907 07:28:31.570" endtime="20210907 07:28:31.576"/>
+</kw>
+<status status="PASS" starttime="20210907 07:28:31.389" endtime="20210907 07:28:31.576"/>
+</kw>
+<kw name="Start and Stop for a Random time" library="keywords">
+<arg>1</arg>
+<arg>5</arg>
+<doc>Starts and stops the stopwatch time within a random value in seconds for the given period.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${start_button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210907 07:28:31.577" level="INFO">Clicking element 'id=btn-resume'.</msg>
+<status status="PASS" starttime="20210907 07:28:31.577" endtime="20210907 07:28:31.615"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>${stop_button}</arg>
+<arg>${stop_button_text}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20210907 07:28:31.616" level="INFO">Verifying element 'id=btn-pause' contains exact text 'Stop'.</msg>
+<status status="PASS" starttime="20210907 07:28:31.616" endtime="20210907 07:28:31.638"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>${lap_button}</arg>
+<arg>${lap_button_text}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20210907 07:28:31.639" level="INFO">Verifying element 'id=btn-lap' contains exact text 'Lap'.</msg>
+<status status="PASS" starttime="20210907 07:28:31.638" endtime="20210907 07:28:31.655"/>
+</kw>
+<kw name="Generate Random Number" library="utils">
+<var>${stop_time}</var>
+<arg>${min}</arg>
+<arg>${max}</arg>
+<doc>Generates a random integer within the arguments' values. Returns string</doc>
+<msg timestamp="20210907 07:28:31.656" level="INFO">generated the number: 2</msg>
+<msg timestamp="20210907 07:28:31.656" level="INFO">${stop_time} = 2</msg>
+<status status="PASS" starttime="20210907 07:28:31.655" endtime="20210907 07:28:31.656"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>${stop_time}s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20210907 07:28:33.656" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20210907 07:28:31.656" endtime="20210907 07:28:33.656"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${stop_button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210907 07:28:33.657" level="INFO">Clicking element 'id=btn-pause'.</msg>
+<status status="PASS" starttime="20210907 07:28:33.656" endtime="20210907 07:28:33.690"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>${start_button}</arg>
+<arg>${start_button_text}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20210907 07:28:33.691" level="INFO">Verifying element 'id=btn-resume' contains exact text 'Start'.</msg>
+<status status="PASS" starttime="20210907 07:28:33.690" endtime="20210907 07:28:33.701"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>${reset_button}</arg>
+<arg>${reset_button_text}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20210907 07:28:33.702" level="INFO">Verifying element 'id=btn-reset' contains exact text 'Reset'.</msg>
+<status status="PASS" starttime="20210907 07:28:33.701" endtime="20210907 07:28:33.709"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20210907 07:28:33.874" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20210907 07:28:33.710" endtime="20210907 07:28:33.874"/>
+</kw>
+<kw name="Convert Int to Time" library="utils">
+<var>${stopwatch_time}</var>
+<arg>${stop_time}</arg>
+<doc>Formats value to the stopwatch time format. Returns string</doc>
+<msg timestamp="20210907 07:28:33.875" level="INFO">Pause time: 00:02</msg>
+<msg timestamp="20210907 07:28:33.875" level="INFO">${stopwatch_time} = 00:02</msg>
+<status status="PASS" starttime="20210907 07:28:33.875" endtime="20210907 07:28:33.875"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${stopwatch_time}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20210907 07:28:33.888" level="INFO">Current page contains text '00:02'.</msg>
+<status status="PASS" starttime="20210907 07:28:33.875" endtime="20210907 07:28:33.888"/>
+</kw>
+<status status="PASS" starttime="20210907 07:28:31.576" endtime="20210907 07:28:33.888"/>
+</kw>
+<kw name="Reset Stopwatch" library="keywords">
+<doc>Resets the stopwatch to its initial value.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${reset_button}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20210907 07:28:33.889" level="INFO">Clicking element 'id=btn-reset'.</msg>
+<status status="PASS" starttime="20210907 07:28:33.889" endtime="20210907 07:28:33.922"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20210907 07:28:34.072" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-4.png"&gt;&lt;img src="selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20210907 07:28:33.923" endtime="20210907 07:28:34.072"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${initial_value}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20210907 07:28:34.080" level="INFO">Current page contains text '00:00.00'.</msg>
+<status status="PASS" starttime="20210907 07:28:34.072" endtime="20210907 07:28:34.080"/>
+</kw>
+<status status="PASS" starttime="20210907 07:28:33.889" endtime="20210907 07:28:34.081"/>
+</kw>
+<doc>Verify that the stopwatch time returns to the initial value when reset.</doc>
+<tag>FE</tag>
+<status status="PASS" starttime="20210907 07:28:31.389" endtime="20210907 07:28:34.081"/>
+</test>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20210907 07:28:34.082" endtime="20210907 07:28:36.199"/>
+</kw>
+<doc>Stopwatch test suite using RobotFramework Selenium.</doc>
+<status status="PASS" starttime="20210907 07:28:24.204" endtime="20210907 07:28:36.199"/>
+</suite>
+<status status="PASS" starttime="20210907 07:28:24.202" endtime="20210907 07:28:36.202"/>
+</suite>
+<status status="PASS" starttime="20210907 07:28:23.015" endtime="20210907 07:28:36.204"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="2" fail="0" skip="0">BE</stat>
+<stat pass="2" fail="0" skip="0">FE</stat>
+</tag>
+<suite>
+<stat pass="4" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1" name="BE">Tests.BE</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1-s1" name="Chucknorris">Tests.BE.Chucknorris</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s2" name="FE">Tests.FE</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s2-s1" name="Stopwatch">Tests.FE.Stopwatch</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

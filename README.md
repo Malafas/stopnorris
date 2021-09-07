@@ -1,6 +1,8 @@
 # STOPNORRIS
-Essay on Acceptance and Integration Testing with RobotFramework.  
-Test specification presented in Docs\stopnorris.pptx
+####Essay on Acceptance and Integration Testing with RobotFramework.  
+
+Test specification presented in Docs\stopnorris.pptx.  
+Latest execution report available in Logs\log.html.
 
 Run all tests: 
 ```

@@ -2,8 +2,8 @@
 Library           RequestsLibrary
 Library           JSONLibrary
 Library           Collections
-Variables         variables.py
 Library           utils.py
+Variables         variables.py
 
 *** Keywords ***
 Get JSON

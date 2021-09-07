@@ -3,18 +3,23 @@ endpoint_categories = "https://api.chucknorris.io/jokes/categories"
 endpoint_random = "https://api.chucknorris.io/jokes/random"
 
 # Schemas
-schema_test = {
+schema_categories = {"type": "array"}
+schema_random = {
     "type" : "object",
     "properties": {
-        "price": {"type" : "number"},
-        "name": {"type" : "string"},
+        "categories": {"type" : "array"},
+        "created_at": {"type" : "string"},
+        "icon_url": {"type" : "string"},
+        "id": {"type": "string"},
+        "updated_at": {"type": "string"},
+        "url": {"type": "string"},
+        "value": {"type": "string"},
     },
 }
-
-schema_categories = {"type": "array"}
-
-# Payloads
-payload_test = {'name': 'Eggs', 'price': 34.99}
-
-payload_categories = ['animal', 'career', 'celebrity', 'dev', 'explicit', 'fashion', 'food', 'history', 'money',
+# Payload Validations
+payload_categories_validation = ['animal', 'career', 'celebrity', 'dev', 'explicit', 'fashion', 'food', 'history', 'money',
                       'movie', 'music', 'political', 'religion', 'science', 'sport', 'travel']
+expected_values_random = {
+        "icon_url": "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
+        "url": "https://api.chucknorris.io/jokes/",
+}
