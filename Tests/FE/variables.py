@@ -1,7 +1,9 @@
+# Test Setup
 url = "https://vclock.com/"
 browser = "chrome"
 web_browser = "chromium"
 
+# Dataset
 initial_value = "00:00.00"
 start_button_text = "Start"
 stop_button_text = "Stop"

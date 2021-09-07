@@ -26,8 +26,9 @@ robot -d Logs Tests\BE\chucknorris.robot
 
 - _Web_  
 [SeleniumLibrary](https://github.com/robotframework/SeleniumLibrary)  
-[BrowserLibrary](https://github.com/MarketSquare/robotframework-browser)
 
-- _Webservices_  
+- _WebAPI_  
 [RequestsLibrary](https://github.com/MarketSquare/robotframework-requests)  
-[JSONLibrary](https://github.com/robotframework-thailand/robotframework-jsonlibrary)
+[JSONLibrary](https://github.com/robotframework-thailand/robotframework-jsonlibrary)  
+[jsonschema](https://github.com/Julian/jsonschema)  
+[JsonValidator](https://github.com/peterservice-rnd/robotframework-jsonvalidator)
